@@ -17,7 +17,7 @@ class BaseStock(TradableMenuInterface, abc.ABC):
     name: str
     type: StockType
 
-    value: int
+    value: int = 1000
     amount: int = pydantic.Field(..., ge=0)
     spread: int = 0
     histories: list[int] = []
@@ -184,7 +184,6 @@ class ETF(BaseStock):
             return self.stock.value * self.percent
 
     type: StockType = StockType.ETF
-    value: int = 1000
 
     expense_ratio: float
     constituents: list[Constituent] = []
