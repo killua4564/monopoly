@@ -1,0 +1,132 @@
+[tool.pylint.BASIC]
+argument-naming-style = "snake_case"
+attr-naming-style = "snake_case"
+bad-names = ""
+class-attribute-naming-style = "any"
+class-const-naming-style = "any"
+class-naming-style = "PascalCase"
+const-naming-style = "UPPER_CASE"
+function-naming-style = "snake_case"
+good-names = "_,i,j,k,x,y,dx,dy"
+include-naming-hint = "no"
+inlinevar-naming-style = "snake_case"
+method-naming-style = "snake_case"
+module-naming-style = "snake_case"
+name-group = ""
+no-docstring-rgx = ""
+property-classes = "abc.abstractproperty"
+variable-naming-style = "snake_case"
+
+[tool.pylint.CLASSES]
+defining-attr-methods = "__init__"
+exclude-protected = ""
+valid-classmethod-first-arg = "cls"
+valid-metaclass-classmethod-first-arg = "cls"
+
+[tool.pylint.DESIGN]
+max-args = 64
+max-attributes = 7
+max-bool-expr = 5
+max-branches = 64
+max-locals = 15
+max-parents = 16
+max-public-methods = 30
+max-returns = 10
+max-statements = 150
+min-public-methods = 0
+
+[tool.pylint.EXCEPTIONS]
+overgeneral-exceptions = ""
+
+[tool.pylint.FORMAT]
+expected-line-ending-format = ""
+ignore-long-lines = "^\\s*(# )?<?https?://\\S+>?$"
+indent-after-paren = 4
+indent-string = "    "
+max-line-length = 120
+max-module-lines = 4096
+single-line-class-stmt = "no"
+single-line-if-stmt = "no"
+
+[tool.pylint.IMPORTS]
+allow-any-import-level = ""
+allow-wildcard-with-all = "no"
+analyse-fallback-blocks = "yes"
+deprecated-modules = "optparse,tkinter.tix"
+ext-import-graph = ""
+import-graph = ""
+int-import-graph = ""
+known-standard-library = ""
+known-third-party = "enchant"
+preferred-modules = ""
+
+[tool.pylint.LOGGING]
+logging-format-style = "new"
+logging-modules = "logging"
+
+[tool.pylint.MASTER]
+extension-pkg-whitelist = "pydantic"
+fail-under = "10.00"
+ignore = ".git"
+ignore-patterns = ""
+init-hook = ""
+jobs = 0
+limit-inference-results = 100
+load-plugins = "pylint_pydantic,pylint_pytest"
+persistent = "yes"
+suggestion-mode = "yes"
+unsafe-load-any-extension = "no"
+
+[tool.pylint."MESSAGES CONTROL"]
+confidence = ""
+disable = "C0111, C0209, C0415, I0011, I0020, W0221, W1203"
+
+[tool.pylint.MISCELLANEOUS]
+notes = "TODO"
+
+[tool.pylint.REFACTORING]
+max-nested-blocks = 6
+never-returning-functions = "sys.exit"
+
+[tool.pylint.REPORTS]
+evaluation = "10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10)"
+output-format = "text"
+reports = "no"
+score = "yes"
+
+[tool.pylint.SIMILARITIES]
+ignore-comments = "yes"
+ignore-docstrings = "yes"
+ignore-imports = "yes"
+min-similarity-lines = 4
+
+[tool.pylint.SPELLING]
+max-spelling-suggestions = 0
+spelling-dict = ""
+spelling-ignore-words = ""
+spelling-private-dict-file = ""
+spelling-store-unknown-words = "no"
+
+[tool.pylint.STRING]
+check-quote-consistency = "yes"
+check-str-concat-over-line-jumps = "yes"
+
+[tool.pylint.TYPECHECK]
+contextmanager-decorators = "contextlib.contextmanager"
+generated-members = ""
+ignore-mixin-members = "yes"
+ignore-none = "no"
+ignore-on-opaque-inference = "yes"
+ignored-classes = ""
+ignored-modules = ""
+missing-member-hint = "yes"
+missing-member-hint-distance = 1
+missing-member-max-choices = 1
+signature-mutators = ""
+
+[tool.pylint.VARIABLES]
+additional-builtins = ""
+allow-global-unused-variables = "yes"
+ignored-argument-names = "_.*|args|kwargs"
+init-import = "no"
+redefining-builtins-modules = "six.moves,past.builtins,future.builtins,builtins,io"
