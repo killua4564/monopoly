@@ -66,7 +66,7 @@ class SystemText(str, enum.Enum):
     REVERSE_FINISH = "翻轉完成!!"
     SELLING_SUCCESS = "賣出成功!!"
     START_POINT_NAME = "臺灣起點"
-    THREE_DICES_NAME = "三顆骰子"
+    THREE_DICES_NAME = "骰子x3"
     TRANSPORT_FINISH = "傳送完成!!"
     TRANSPORT_START_POINT_NAME = "傳送起點"
     UNDEFINED = "NULL"
@@ -77,8 +77,8 @@ class TaxFee(float, enum.Enum):
     ETF_TRANSFER_TAX = .001
     FORECLOSE_FEE = .8
     HOUSE_TAX = .03
+    IMPOSE_FEE = 1.1
     INCOMING_TAX = .05
     LAND_VALUE_TAX = .01
-    LEVY_FEE = 1.1
     STOCK_HANDLING_FEE = .001425
     STOCK_TRANSFER_TAX = .003

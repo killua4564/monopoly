@@ -351,7 +351,7 @@ class TestImposePropertyCard:
             with mock.patch("monopoly.models.equipments.cards.input", return_value="y"):
                 _cash = player.cash
                 _new_cash = new_player.cash
-                _value = int(land.land_price * TaxFee.LEVY_FEE.value)
+                _value = int(land.land_price * TaxFee.IMPOSE_FEE.value)
 
                 impose_property_card.execute(new_player, board=board)
 
@@ -378,7 +378,7 @@ class TestImposePropertyCard:
             with mock.patch("monopoly.models.equipments.cards.input", return_value="y"):
                 _cash = player.cash
                 _new_cash = new_player.cash
-                _value = int((land.land_price + 4 * land.house_price) * TaxFee.LEVY_FEE.value)
+                _value = int((land.land_price + 4 * land.house_price) * TaxFee.IMPOSE_FEE.value)
 
                 impose_property_card.execute(new_player, board=board)
 
@@ -459,13 +459,13 @@ class TestImposePropertyCard:
                 assert board.get_or_create_credential(land).player == player
 
 
-class TestTransportStartPointCard:
-    @pytest.fixture(name="trans_start_point_card")
+class TestReturnToStartPointCard:
+    @pytest.fixture(name="return_to_start_point_card")
     def fixture_trans_start_point_card(
         self,
         cards: dict[tuple, models.BaseCard],
-    ) -> models.TransportStartPointCard:
-        return cards[("TransportStartPointCard", None)]
+    ) -> models.ReturnToStartPointCard:
+        return cards[("ReturnToStartPointCard", None)]
 
     @pytest.fixture(name="start_point_space")
     def fixture_start_point_space(
@@ -477,11 +477,11 @@ class TestTransportStartPointCard:
     def test_success(
         self,
         board_player: BoardPlayer,
-        trans_start_point_card: models.TransportStartPointCard,
+        return_to_start_point_card: models.ReturnToStartPointCard,
         start_point_space: StartPointSpace,
     ):
         with mock.patch("monopoly.models.equipments.spaces.StartPointSpace.pass_by") as mock_pass_by:
-            trans_start_point_card.execute(board_player.player, board=board_player.board)
+            return_to_start_point_card.execute(board_player.player, board=board_player.board)
 
             assert board_player.space.space == start_point_space
             assert mock_pass_by.call_count == 1

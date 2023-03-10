@@ -159,7 +159,7 @@ class Land(BaseLand):
         )
         for idx, toll in enumerate(self.tolls):
             self.print_row(
-                f"{f'{idx}棟房子：':>{self._width // 2 - 4}}"
+                f"{f'{idx}棟房屋：':>{self._width // 2 - 4}}"
                 f"{f'${toll}':<{self._width // 2}}"
             )
 

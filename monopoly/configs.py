@@ -22,7 +22,7 @@ BUILDING_UPPERBOUND: int = 4
 # 賣掉土地的折現率
 LAND_DISCOUNT_RATE: float = 1.
 
-# 賣掉房子的折現率
+# 賣掉房屋的折現率
 HOUSE_DISCOUNT_RATE: float = .9
 
 # 股票漲跌隨機值基數

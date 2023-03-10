@@ -97,7 +97,7 @@ class FreeBuildingCard(BaseCard):
     card_type: CardType = CardType.COMMUNITY_CHEST
 
     def _execute_logic(self, player: "BasePlayer", board: "Board"):
-        print(f"{player} 想要在哪片土地建房子呢？")
+        print(f"{player} 想要在哪片土地建房屋呢？")
         player.list_lands()
 
         try:
@@ -105,12 +105,12 @@ class FreeBuildingCard(BaseCard):
             credential.construction(board, is_free=True)
             raise player.Cancelled()
         except AssertionError:
-            print("此土地不能建房子了!!")
+            print("此土地不能建房屋了!!")
         except KeyError:
             print(SystemText.PROPERTY_CODE_ERROR.value)
 
     def execute(self, player: "BasePlayer", *, board: "Board", **kwargs):
-        print(f"{player} 抽到免費建房子乙棟!!")
+        print(f"{player} 抽到免費建房屋乙棟!!")
         with contextlib.suppress(player.Cancelled):
             while True:
                 self._execute_logic(player, board)
@@ -153,7 +153,7 @@ class ImposePropertyCard(BaseCard):
             return
 
         owner = credential.player
-        value = int(credential.worth * TaxFee.LEVY_FEE.value)
+        value = int(credential.worth * TaxFee.IMPOSE_FEE.value)
         print(f"{player} 需要支付 {land} 的徵收費 ${value} 給 {owner} (Y/N)")
         if input("> ").upper() == "Y" and player.prepare_payment(board, value):
             player.pay(value)
@@ -170,13 +170,13 @@ class ImposePropertyCard(BaseCard):
             raise board.Cancelled()
 
     def execute(self, player: "BasePlayer", *, board: "Board", **kwargs):
-        print(f"{player} 抽到可向玩家徵收不動產!!(買入總價值 {int(100 * TaxFee.LEVY_FEE.value)}%)")
+        print(f"{player} 抽到可向玩家徵收不動產!!(買入總價值 {int(100 * TaxFee.IMPOSE_FEE.value)}%)")
         with contextlib.suppress(board.Cancelled):
             while True:
                 self._execute_logic(player, board)
 
 
-class TransportStartPointCard(BaseCard):
+class ReturnToStartPointCard(BaseCard):
     card_type: CardType = CardType.CHANCE
 
     def execute(self, player: "BasePlayer", *, board: "Board", **kwargs):

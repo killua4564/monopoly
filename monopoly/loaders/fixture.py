@@ -105,12 +105,13 @@ class FixtureLoader(BaseLoader):
         with open(FixturePath.LANDS.value, "r", encoding="utf-8") as file:
             for data in csv.DictReader(file):
                 key = data["id"]
-                data["tolls"] = tuple(data["tolls"].split(","))
                 if data["area"] == Area.OCEAN.value:
+                    data["tolls"] = (data["land_price"],)
                     land = Ocean.parse_obj(data)
                     board.lands[key] = land
                     continue
 
+                data["tolls"] = tuple(data["tolls"].split(","))
                 data["value"] = data["land_price"]
                 land = Land.parse_obj(data)
                 stock = Stock.parse_obj(data)
