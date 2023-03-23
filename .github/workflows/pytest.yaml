@@ -18,9 +18,11 @@ jobs:
     strategy:
       matrix:
         os:
+          - "windows"
           - "ubuntu"
           - "macos"
         python-version:
+          - "3.9"
           - "3.10"
           - "3.11"
       fail-fast: false

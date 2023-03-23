@@ -21,8 +21,12 @@ jobs:
           - "ubuntu"
           - "macos"
         python-version:
+          - "3.9"
           - "3.10"
           - "3.11"
+        include:
+          - os: "windows"
+            python-version: "3.11"
       fail-fast: false
 
     steps:
