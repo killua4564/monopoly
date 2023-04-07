@@ -1,6 +1,7 @@
 import abc
 import contextlib
 import pathlib
+import time
 import typing
 
 from monopoly import configs
@@ -241,10 +242,15 @@ class SavableMenuInterface(BaseMenuInterface, abc.ABC):
 
         try:
             filename: str = cls._ensure_suffix(input("> "))
-            return cls.loading(cls._ensure_save_folder(filename))
+            return cls.loading(cls._ensure_save_folder(filename), *args, **kwargs)
         except FileNotFoundError:
             print(SystemText.FILENAME_ERROR.value)
         return None
+
+    def auto_saving(self, *args, **kwargs):
+        filename: str = f"_auto_saving_{int(time.time())}"
+        filename = self._ensure_save_folder(self._ensure_suffix(filename))
+        self.saving(filename, *args, **kwargs)
 
     @abc.abstractmethod
     def saving(self, filepath: pathlib.PosixPath, *args, **kwargs):
@@ -260,6 +266,6 @@ class SavableMenuInterface(BaseMenuInterface, abc.ABC):
 
         try:
             filename: str = self._ensure_suffix(input("> "))
-            self.saving(self._ensure_save_folder(filename))
+            self.saving(self._ensure_save_folder(filename), *args, **kwargs)
         except FileNotFoundError:
             print(SystemText.FILENAME_ERROR.value)

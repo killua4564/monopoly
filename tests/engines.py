@@ -10,13 +10,14 @@ class TestEngineExecutionLoad:
         self,
         engine: BaseEngine,
     ):
-        mock_board = mock.Mock()
+        mock_board = mock.Mock(auto_saving=mock.Mock())
         with mock.patch("monopoly.models.boards.Board.load", return_value=mock_board):
             with mock.patch("monopoly.engines.configs.DEBUG_MODE", new=False):
                 with mock.patch("monopoly.engines.sys.exit") as mock_exit:
                     engine.execution_load()
 
                     assert engine.board == mock_board
+                    assert mock_board.auto_saving.call_count == 0
                     assert mock_exit.call_count == 0
 
     def test_failed_value_error(
