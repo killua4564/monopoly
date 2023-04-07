@@ -184,7 +184,7 @@ class TestLandSpace:
         ocean_space: models.LandSpace,
         new_board_player: BoardPlayer,
     ):
-        player, ocean = player_ocean.player, player_ocean.land
+        player = player_ocean.player
         board.current_player, new_player = new_board_player, new_board_player.player
 
         with mock.patch("monopoly.models.equipments.players.input") as mock_input:
