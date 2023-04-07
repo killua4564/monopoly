@@ -93,7 +93,7 @@ class BaseStock(TradableMenuInterface, abc.ABC):
         for idx, history in enumerate(self.histories, 1):
             self.print_row(
                 f"{f'前{idx:02}次：':>{self._width // 2 - 3}}"
-                f"{f'{history:+}':<{self._width // 2}}"
+                f"{f'{history:+,}':<{self._width // 2}}"
             )
 
     @abc.abstractmethod
@@ -103,11 +103,11 @@ class BaseStock(TradableMenuInterface, abc.ABC):
     def show_stock_info(self):
         self.print_row(
             f"{'價格：':>{self._width // 2 - 3}}"
-            f"{f'{self.value:02}':<{self._width // 2}}"
+            f"{f'{self.value:02,}':<{self._width // 2}}"
         )
         self.print_row(
             f"{'漲跌：':>{self._width // 2 - 3}}"
-            f"{f'{self.spread:+}':<{self._width // 2}}"
+            f"{f'{self.spread:+,}':<{self._width // 2}}"
         )
         self.print_row(
             f"{'剩餘：':>{self._width // 2 - 3}}"

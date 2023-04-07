@@ -96,7 +96,7 @@ class BaseLand(TradableMenuInterface, abc.ABC):
         )
         self.print_row(
             f"{'土地價值：':>{self._width // 2 - 5}}"
-            f"{f'${self.land_price}':<{self._width // 2}}"
+            f"{f'${self.land_price:,}':<{self._width // 2}}"
         )
 
     @abc.abstractmethod
@@ -145,7 +145,7 @@ class Land(BaseLand):
         super().show_land_info()
         self.print_row(
             f"{'房屋價值：':>{self._width // 2 - 5}}"
-            f"{f'${self.house_price}':<{self._width // 2}}"
+            f"{f'${self.house_price:,}':<{self._width // 2}}"
         )
         self.print_row(
             f"{'房屋數量：':>{self._width // 2 - 5}}"
@@ -160,7 +160,7 @@ class Land(BaseLand):
         for idx, toll in enumerate(self.tolls):
             self.print_row(
                 f"{f'{idx}棟房屋：':>{self._width // 2 - 4}}"
-                f"{f'${toll}':<{self._width // 2}}"
+                f"{f'${toll:,}':<{self._width // 2}}"
             )
 
 
@@ -173,5 +173,5 @@ class Ocean(BaseLand):
     def show_tolling_info(self):
         self.print_row(
             f"{'過路費：':>{self._width // 2 - 4}}"
-            f"{f'${self.tolls[0]}':<{self._width // 2}}"
+            f"{f'${self.tolls[0]:,}':<{self._width // 2}}"
         )
