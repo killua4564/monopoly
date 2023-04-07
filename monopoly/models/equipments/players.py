@@ -269,7 +269,7 @@ class PlayerLand(BuildableMenuInterface):
         base_value = self.land.tolls[self.houses]
         area_count = self.player.count_area_lands(self.land.area)
         addition_rate = (area_count - 1) * configs.AREA_ADDITION_RATE
-        return base_value * (1 + addition_rate)
+        return int(base_value * (1 + addition_rate))
 
     @property
     def worth(self) -> int:
@@ -329,7 +329,8 @@ class PlayerLand(BuildableMenuInterface):
         player.prepare_payment(board, value, force=True)
         player.pay(value)
         self.player.earn(value)
-        self.land.stock.earn(value)
+        if self.land.buildable:
+            self.land.stock.earn(value)
 
     def __str__(self) -> str:
         return str(self.land)

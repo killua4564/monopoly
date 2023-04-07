@@ -177,6 +177,28 @@ class TestLandSpace:
             assert land.stock.earning == int(_value * land.stock.payout_ratio)
             assert mock_input.call_count == 1
 
+    def test_success_arrive_tolling_ocean(
+        self,
+        board: Board,
+        player_ocean: PlayerLand,
+        ocean_space: models.LandSpace,
+        new_board_player: BoardPlayer,
+    ):
+        player, ocean = player_ocean.player, player_ocean.land
+        board.current_player, new_player = new_board_player, new_board_player.player
+
+        with mock.patch("monopoly.models.equipments.players.input") as mock_input:
+            _cash = player.cash
+            _new_cash = new_player.cash
+            _value = player_ocean.tolling_value
+
+            ocean_space.arrive(new_player, board=board)
+
+            assert player.cash == _cash + _value
+            assert player.incoming == _value
+            assert new_player.cash == _new_cash - _value
+            assert mock_input.call_count == 1
+
     def test_success_arrive_tolling_advanced(
         self,
         board: Board,
