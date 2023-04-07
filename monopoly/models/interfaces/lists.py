@@ -73,7 +73,7 @@ class PropertyListableInterface(BaseListableInterface, abc.ABC):
 
     @property
     def list_stock_header(self) -> tuple:
-        return ("代碼", "名稱", "價格", "張數", "淨值")
+        return ("代碼", "名稱", "價格", "張數", "淨值", "損益")
 
     def list_stocks(self):
         self.list_divider(self.list_stock_header)

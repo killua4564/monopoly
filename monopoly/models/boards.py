@@ -161,6 +161,7 @@ class Board(PlayerListableInterface, PropertyListableInterface, SavableMenuInter
             f"{stock.value:,}",
             stock.amount,
             SystemText.UNDEFINED.value,
+            SystemText.UNDEFINED.value,
         )
 
     def opening_stocks(self):

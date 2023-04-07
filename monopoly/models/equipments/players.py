@@ -128,6 +128,7 @@ class BasePlayer(ShowableModelInterface, PropertyListableInterface, abc.ABC):
             f"{stock.stock.value:,}",
             stock.amount,
             f"{stock.net_worth:,}",
+            f"{stock.unrealized_worth:,}",
         )
 
     def pay(self, value: int):
@@ -340,6 +341,7 @@ class PlayerStock(pydantic.BaseModel):
     player: BasePlayer
     stock: BaseStock
     amount: int = 0
+    costing: int = 0
 
     @property
     def net_worth(self) -> int:
@@ -348,6 +350,10 @@ class PlayerStock(pydantic.BaseModel):
     @property
     def stock_worth(self) -> int:
         return self.stock.value * self.amount
+
+    @property
+    def unrealized_worth(self) -> int:
+        return self.net_worth - self.costing
 
     def decrease(self):
         assert self.amount > 0
