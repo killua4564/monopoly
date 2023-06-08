@@ -20,7 +20,7 @@ class BaseStock(TradableMenuInterface, abc.ABC):
     value: int = 1000
     amount: int = pydantic.Field(..., ge=0)
     spread: int = 0
-    histories: list[int] = []
+    histories: list[int] = pydantic.Field(default_factory=list)
     transfer_tax: float
 
     @property
@@ -186,7 +186,7 @@ class ETF(BaseStock):
     type: StockType = StockType.ETF
 
     expense_ratio: float
-    constituents: list[Constituent] = []
+    constituents: list[Constituent] = pydantic.Field(default_factory=list)
     transfer_tax: float = TaxFee.ETF_TRANSFER_TAX.value
 
     def opening(self, **kwargs):

@@ -1,6 +1,8 @@
 import abc
 import typing
 
+import pydantic
+
 from monopoly.constants import SystemText
 
 from .models import BaseViewableModelInterface, CancelableModelInterface
@@ -28,7 +30,7 @@ class BaseListableInterface(BaseViewableModelInterface, CancelableModelInterface
 
 
 class PlayerListableInterface(BaseListableInterface, abc.ABC):
-    players: typing.Iterable[typing.Any] = []
+    players: typing.Iterable[typing.Any] = pydantic.Field(default_factory=list)
 
     @abc.abstractmethod
     def list_player_detail(self, player: typing.Any) -> tuple:

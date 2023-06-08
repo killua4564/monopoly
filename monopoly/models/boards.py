@@ -6,6 +6,8 @@ import pickle
 import random
 import typing
 
+import pydantic
+
 from monopoly.constants import CardType, DirectionAttr, StockType, SystemText
 
 from .equipments import BaseCard, BasePlayer, BaseSpace
@@ -23,7 +25,7 @@ class Board(PlayerListableInterface, PropertyListableInterface, SavableMenuInter
 
     lands: dict[str, BaseLand] = {}
     stocks: dict[str, BaseStock] = {}
-    players: list[BasePlayer] = []
+    players: list[BasePlayer] = pydantic.Field(default_factory=list)
 
     cards: dict[CardType, list[BaseCard]] = collections.defaultdict(list)
     credentials: dict[str, PlayerLand] = {}
@@ -343,8 +345,8 @@ class BoardSpace(ChainableInterface):
     board: Board
     space: BaseSpace
 
-    backwards: list["BoardSpace"] = []
-    forwards: list["BoardSpace"] = []
+    backwards: list["BoardSpace"] = pydantic.Field(default_factory=list)
+    forwards: list["BoardSpace"] = pydantic.Field(default_factory=list)
 
     def get_backwards(self) -> typing.Union[list["BoardSpace"], "BoardSpace", None]:
         if len(self.backwards) > 1:

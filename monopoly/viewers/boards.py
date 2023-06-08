@@ -10,7 +10,7 @@ class BoardViewer:
     class Space(pydantic.BaseModel):
         name: str
         houses: int = 0
-        usernames: list[str] = []
+        usernames: list[str] = pydantic.Field(default_factory=list)
 
     deltas: list[tuple[int, int]] = [
         (0, -1), (-1, 0), (0, 1), (1, 0),
